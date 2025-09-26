@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WhiteHall Studio</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    html{scroll-behavior:smooth;}
+    body{font-family:'Poppins',sans-serif;margin:0;}
+
+    /* Navbar */
+    .navbar{position:fixed;top:0;width:100%;z-index:1000;transition:background-color .3s ease,box-shadow .3s ease;}
+    .navbar.bg-transparent{background:transparent!important;}
+    .navbar.navbar-solid,.navbar.navbar-open{background:#000!important;box-shadow:0 2px 12px rgba(0,0,0,.25);}
+
+    /* Hero */
+    .hero{
+      height:100vh;color:#fff;display:flex;align-items:center;
+      background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+                 url('images/bg.jpg') center/cover no-repeat;
+      background-attachment:fixed;
+      margin-bottom:0;
+    }
+    .hero .container{max-width:1100px;}
+    .display-3{font-weight:700;letter-spacing:-.5px;}
+    .lead{font-weight:300;font-size:1.25rem;}
+
+    /* About */
+    .about-section{background:#000;color:#fff;padding-top:60px;padding-bottom:40px;}
+
+    /* Showreel cards (homepage preview) */
+    .showreel-card{position:relative;overflow:hidden;border-radius:0;cursor:pointer;transition:transform .3s;}
+    .showreel-card img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;transition:transform .3s;}
+    .showreel-card:hover img{transform:scale(1.05);}
+    .showreel-overlay{
+      position:absolute;inset:0;background:rgba(0,0,0,.5);color:#fff;
+      display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+      opacity:0;transition:opacity .3s;padding:20px;
+    }
+    .showreel-card:hover .showreel-overlay{opacity:1;}
+    .showreel-overlay h5{font-size:1.1rem;font-weight:600;margin-bottom:10px;}
+    .showreel-overlay p{font-size:.85rem;margin-bottom:15px;}
+    .showreel-overlay a{text-decoration:none;color:#fff;border:1px solid #fff;padding:5px 14px;border-radius:2px;transition:all .3s;}
+    .showreel-overlay a:hover{background:#fff;color:#000;}
+
+    /* Team */
+    .team-section{
+      position:relative;background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+      url('images/BGabout.jpg') center/cover no-repeat fixed;color:#fff;
+    }
+    .team-section .container{position:relative;z-index:1;}
+    .team-title{font-weight:700;letter-spacing:.5px;}
+    .team-member{text-align:center;}
+    .team-member .img-container{width:100%;aspect-ratio:1/1;background:#d9d9d9;border-radius:14px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.35);}
+    .team-member img{width:100%;height:100%;object-fit:cover;display:block;}
+    .team-member h5{margin-top:14px;margin-bottom:4px;font-weight:700;color:#fff;}
+    .team-member p{margin:0;font-size:.82rem;text-transform:uppercase;letter-spacing:.5px;color:#cfcfcf;}
+
+    /* Contact */
+    .contact-section{background:#000;color:#fff;padding-top:60px;padding-bottom:60px;}
+    .contact-email{border-bottom:2px solid #f1c40f;font-size:1.75rem;font-weight:700;}
+    @media (max-width: 991px){.contact-email{font-size:1.25rem;}}
+    @media (max-width: 575px){.contact-email{font-size:1.3rem!important;}}
+    .contact-section .row{margin-top:10px;}
+
+    /* Footer */
+    footer{margin-top:0;background:#fff;color:#000;}
+
+    /* Back to top */
+    .back-to-top{position:fixed;bottom:30px;right:30px;display:none;z-index:999;cursor:pointer;}
+    .back-to-top img{width:50px;height:auto;transition:transform .3s;}
+    .back-to-top img:hover{transform:scale(1.1);}
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top">
+    <div class="container text-center text-lg-start">
+      <a class="navbar-brand" href="index.html">
+        <img src="images/logo.png" alt="WhiteHall Studio" height="70">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="nav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="showreels.html">Showreels</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container text-start">
+      <h1 class="display-3">Hi, We're <span class="text-warning">WhiteHall Studio</span>.</h1>
+      <p class="lead">A music studio production.</p>
+      <a href="#contact" class="btn btn-outline-light btn-lg mt-3">Contact Us</a>
+    </div>
+  </section>
+
+  <!-- About Us -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <h2 class="fw-bold text-warning">About Us</h2>
+      <p>
+        WhiteHall Studio is a music production house specializing in recording, mixing, 
+        and audio post-production. We work with artists to bring their creative visions 
+        to life. Our team of producers, engineers, and composers have experience across 
+        genres and platforms, from indie records to commercial campaigns.
+      </p>
+    </div>
+  </section>
+
+  <!-- Showreels (preview) -->
+  <section id="showreel" class="py-5" style="background:#000;color:#fff;">
+    <div class="container">
+      <h2 class="fw-bold text-warning mb-4">Showreels</h2>
+      <div class="row g-4">
+        <!-- Card 1 -->
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="showreel-card">
+            <img src="images/mmrd.jpeg" alt="Malaysia Madani Rakyat Disantuni">
+            <div class="showreel-overlay">
+              <h5>Malaysia Madani Rakyat Disantuni</h5>
+              <p>Siti Nurhaliza</p>
+              <a href="https://www.youtube.com/watch?v=NJRGXtBZjJU" target="_blank" rel="noopener">View Project</a>
+            </div>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="showreel-card">
+            <img src="images/gentayangan.jpg" alt="Gentayangan">
+            <div class="showreel-overlay">
+              <h5>Gentayangan</h5>
+              <p>Aina Abdul</p>
+              <a href="https://youtu.be/ls5ZRL7Nb2M?si=ctIyCNnlU8RZvYAT" target="_blank" rel="noopener">View Project</a>
+            </div>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="showreel-card">
+            <img src="images/ehin.jpg" alt="Melodi Terluka">
+            <div class="showreel-overlay">
+              <h5>Melodi Terluka</h5>
+              <p>Ehin</p>
+              <a href="https://youtu.be/7CU0-o9Gl-8?si=4Oj8d5BmKxGHBZhX" target="_blank" rel="noopener">View Project</a>
+            </div>
+          </div>
+        </div>
+        <!-- Pujuk -->
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="showreel-card">
+            <img src="images/pujuk.jpg" alt="Pujuk">
+            <div class="showreel-overlay">
+              <h5>Pujuk</h5>
+              <p>Haziq Rosebi ft. Baby Shima</p>
+              <a href="https://www.youtube.com/watch?v=Mskd4nl4Au4">View Project</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Raya Macam 2022 -->
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="showreel-card">
+            <img src="images/rayamacamcara.jpg" alt="TNB Raya 2022">
+            <div class="showreel-overlay">
+              <h5>Raya Macam 2022</h5>
+              <p>Tenaga Nasional Berhad</p>
+              <a href="https://youtu.be/RROuAnGO3Yc?si=itQwtFZO_EiB1_ek">View Project</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Zapin Malam Raya -->
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="showreel-card">
+            <img src="images/zmr.jpg" alt="Zapin Malam Raya">
+            <div class="showreel-overlay">
+              <h5>Zapin Malam Raya</h5>
+              <p>Ara Johari ft. Trio Latah</p>
+              <a href="https://youtu.be/sghYIdAH82Y?si=TVINKjxEeOOf7GRO">View Project</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-end mt-3">
+        <a href="showreel.html" class="text-white text-decoration-none">view more &gt;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section id="team" class="team-section py-5">
+    <div class="container">
+      <h2 class="team-title text-center text-warning mb-5">Our dedicated team</h2>
+      <div class="row g-5">
+        <div class="col-lg-4 col-md-4 col-sm-6">
+          <div class="team-member">
+            <div class="img-container"><img src="images/Affan.jpg" alt="Affan"></div>
+            <h5>Affan Mazlan</h5><p>Founder • Producer • Arranger • Composer</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-6">
+          <div class="team-member">
+            <div class="img-container"><img src="images/Danish.jpg" alt="Danish"></div>
+            <h5>Danish Norr</h5><p>Composer</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-6">
+          <div class="team-member">
+            <div class="img-container"><img src="images/Zarul.jpg" alt="Zarul"></div>
+            <h5>Zarul Zahir</h5><p>Composer</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-6">
+          <div class="team-member">
+            <div class="img-container"><img src="images/Syafiq.jpg" alt="Syafiq"></div>
+            <h5>Syafiq Al-Gambus</h5><p>Composer</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-6">
+          <div class="team-member">
+            <div class="img-container"><img src="images/Fadhlan.jpg" alt="Fadhlan"></div>
+            <h5>Fadhlan Asyraaf</h5><p>Sound Engineer</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-6">
+          <div class="team-member">
+            <div class="img-container"><img src="images/Zuhairi.jpeg" alt="Zuhairi"></div>
+            <h5>Zuhairi Hamarudin</h5><p>Creative Manager</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact-section">
+    <div class="container text-center text-md-start">
+      <div class="mb-3">
+        <a href="mailto:creative@whitehallstudio.co" class="fs-3 fw-bold text-warning text-decoration-none contact-email">
+          creative@whitehallstudio.co ↗
+        </a>
+      </div>
+      <div class="row gy-2 text-uppercase small fw-semibold">
+        <div class="col-md-4">
+          <span class="d-block text-secondary">Contact Details</span>
+          <a href="tel:+601111480306" class="text-white text-decoration-none">+60 11-1148 0306</a>
+        </div>
+        <div class="col-md-4">
+          <span class="d-block text-secondary">Socials</span>
+          <a href="https://www.instagram.com/whitehall.music/" target="_blank" rel="noopener" class="text-white text-decoration-none">Instagram</a>
+        </div>
+        <div class="col-md-4">
+          <span class="d-block text-secondary">Location</span>
+          <span class="text-white">Selangor, Malaysia</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center py-3">
+    <div class="container">
+      &copy; <span id="year"></span> WhiteHall Studio. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <a href="#" class="back-to-top"><img src="images/backtotop.png" alt="Back to Top"></a>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Back to top
+    const backToTop = document.querySelector('.back-to-top');
+    window.addEventListener('scroll', () => backToTop.style.display = window.scrollY > 300 ? 'block' : 'none');
+    backToTop.addEventListener('click', e => { e.preventDefault(); window.scrollTo({top:0, behavior:'smooth'}); });
+
+    // Navbar: black after passing hero + on mobile open
+    const navbar = document.querySelector('.navbar');
+    const collapseEl = document.getElementById('nav');
+    if (collapseEl){
+      collapseEl.addEventListener('show.bs.collapse', ()=>navbar.classList.add('navbar-open'));
+      collapseEl.addEventListener('hidden.bs.collapse', ()=>navbar.classList.remove('navbar-open'));
+    }
+    (function(){
+      const hero = document.querySelector('.hero');
+      function updateNavbarSolid(){
+        if (!hero) return;
+        const threshold = Math.max(0, hero.offsetHeight - navbar.offsetHeight);
+        if (window.scrollY >= threshold) navbar.classList.add('navbar-solid');
+        else navbar.classList.remove('navbar-solid');
+      }
+      window.addEventListener('load', updateNavbarSolid);
+      window.addEventListener('scroll', updateNavbarSolid, {passive:true});
+      window.addEventListener('resize', updateNavbarSolid);
+    })();
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
